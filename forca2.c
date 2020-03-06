@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main()
-{
+int main() {
 
     printf("\nSEJA BEM-VINDO AO JOGO DA FORCA 2000\n\n");
     
@@ -14,12 +13,13 @@ int main()
 
     int enforcou = 0;
     int acertou = 0;
+    int tentativas = 0;
+    char chutes[26];
 
     
     /*Loop geral do software*/
 
-    do
-    {
+    do {
 
         /*Aqui é onde há a interação com o usuário pergunto o chute que ele dá.*/
 
@@ -29,16 +29,40 @@ int main()
         printf("Chute: ");
         scanf(" %c", &chute);
 
+        chutes[tentativas] = chute;
+        tentativas++;
 
-        //Bloco de código não terminado
-        do 
-        {
-            for(int i = 0; i < strlen(palavrasecreta); i++)
-            {
-                printf("_");
+
+        //Inteligência para identificar se acertou e descobrir a letra.
+
+            for(int i = 0; i < strlen(palavrasecreta); i++){
+
+                int achou =  0;
+
+                for(int j =0; j < tentativas; j++) {
+
+                    if(chutes[j] == palavrasecreta[i]) {
+                        achou = 1;
+                        break;
+
+                    }
+
+                }
+
+                if(achou) {
+
+                    printf("%c", palavrasecreta[i]);
+
+                } else {
+
+                    printf("_");
+
+                }
+
             }
+
             printf("\n");
-        }
+        
         
         /*BUG DO SCANF: O scanf reconhece o enter como um caractere e quando validamos um chute,
         o enter fica como BUFF. Então quando ele nos pergunta de novo, o BUFF é validado na hora
@@ -47,14 +71,12 @@ int main()
 
         /*Loop de repetição para apresentação da palavra secreta*/
 
-        for(int i = 0; i <= strlen(palavrasecreta); i++)
-        {
+        for(int i = 0; i <= strlen(palavrasecreta); i++) {
 
             /*Condicional para verificar se o chute informado bate com alguma letra da
             palavra secreta e mostrar qual posição estás.*/
 
-            if(palavrasecreta[i] == chute)
-            {
+            if(palavrasecreta[i] == chute) {
 
                 printf("A posição %d tem essa letra\n", i + 1);
 
