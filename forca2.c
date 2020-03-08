@@ -5,29 +5,38 @@
 int main() {
 
     printf("\nSEJA BEM-VINDO AO JOGO DA FORCA 2000\n\n");
+
+
+    //Array da palavra secreta 
     
     char palavrasecreta[20];
     sprintf(palavrasecreta, "MELANCIA");
 
-    /*Vaiáveis que se identificara o término do loop geral e qual motivo.*/
+    //Vaiáveis que se identificara o término do loop geral e qual motivo.
 
     int enforcou = 0;
     int acertou = 0;
+
+    //Armazenamento dos chutes dados para o loop de aparecer e npumero de tentativas
+
     int tentativas = 0;
     char chutes[26];
 
     
-    /*Loop geral do software*/
+    //Loop geral do software
 
     do {
 
-        /*Aqui é onde há a interação com o usuário pergunto o chute que ele dá.*/
+        //Aqui é onde há a interação com o usuário pergunto o chute que ele dá.
 
         char chute;
 
+        printf("\n");
+        printf("---------------------------------------------------\n");
         printf("Qual é a letra?\n");
         printf("Chute: ");
         scanf(" %c", &chute);
+        printf("\n\n");
 
         chutes[tentativas] = chute;
         tentativas++;
@@ -48,7 +57,7 @@ int main() {
                     }
 
                 }
-
+                
                 if(achou) {
 
                     printf("%c", palavrasecreta[i]);
@@ -64,17 +73,23 @@ int main() {
             printf("\n");
         
         
-        /*BUG DO SCANF: O scanf reconhece o enter como um caractere e quando validamos um chute,
-        o enter fica como BUFF. Então quando ele nos pergunta de novo, o BUFF é validado na hora
-        rodando mais uma vez sem nos perguntar. Por isso é preciso adicionar um espaço dentro das
-        aspas antes da máscara*/
+        /*
+         *BUG DO SCANF: O scanf reconhece o enter como um caractere e quando validamos um chute,
+         *o enter fica como BUFF. Então quando ele nos pergunta de novo, o BUFF é validado na hora
+         *rodando mais uma vez sem nos perguntar. Por isso é preciso adicionar um espaço dentro das
+         *aspas antes da máscara
+         */
+
+        printf("\n");
 
         /*Loop de repetição para apresentação da palavra secreta*/
 
         for(int i = 0; i <= strlen(palavrasecreta); i++) {
 
-            /*Condicional para verificar se o chute informado bate com alguma letra da
-            palavra secreta e mostrar qual posição estás.*/
+            /*
+             *Condicional para verificar se o chute informado bate com alguma letra da
+             *palavra secreta e mostrar qual posição estás.
+             */
 
             if(palavrasecreta[i] == chute) {
 
@@ -84,8 +99,9 @@ int main() {
 
         }
 
-        /*A "!" (exclamação) nas variáveis a baixo esta invertendo o valor original delas.*/
-        /*Transformou o valor da variável de 0 para 1. Então, o loop*/
+        //A "!" (exclamação) nas variáveis a baixo esta invertendo o valor original delas.
+
+        //Transformou o valor da variável de 0 para 1. Então, o loop
 
     } while(!acertou && !enforcou);
 
