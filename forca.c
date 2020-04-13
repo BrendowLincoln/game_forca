@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
+char palavrasecreta[20];
+int tentativas = 0;
+char chutes[26];
+
 //Função da abertura do jogo da forca
 
 void  abertura()
@@ -12,7 +16,7 @@ void  abertura()
 
 //Função que pede o chute
 
-void chuta(char chutes[26], int* tentativas)
+void chuta()
 {
     char chute;
     printf("---------------------------------------------------\n");
@@ -21,11 +25,10 @@ void chuta(char chutes[26], int* tentativas)
     scanf(" %c", &chute);
     printf("\n\n");
 
-    chutes[*tentativas] = chute;
-    (*tentativas)++;
+    chutes[tentativas] = chute;
 }
 
-int jachutou(char letra, char* chutes, int tentativas)
+int jachutou(char letra)
 {
     int achou = 0;
 
@@ -44,7 +47,7 @@ int jachutou(char letra, char* chutes, int tentativas)
     return achou;
 }
 
-void desenhaforca(char* palavrasecreta, char* chutes, int tentativas)
+void desenhaforca()
 {
 
     printf("Você já deu %d chutes\n", tentativas);
@@ -56,7 +59,7 @@ void desenhaforca(char* palavrasecreta, char* chutes, int tentativas)
         for(int i = 0; i < strlen(palavrasecreta); i++)
         {
             
-            if(jachutou(palavrasecreta[i], chutes, tentativas)) 
+            if(jachutou(palavrasecreta[i])) 
             {
 
                 printf("%c", palavrasecreta[i]);
@@ -74,7 +77,7 @@ void desenhaforca(char* palavrasecreta, char* chutes, int tentativas)
 
 }
 
-void escolherpalavra(char* palavrasecreta)
+void escolherpalavra()
 {
     sprintf(palavrasecreta, "MELANCIA");
 }
@@ -85,8 +88,6 @@ int main()
  
     //Array da palavra secreta 
     
-    char palavrasecreta[20];
-
     //Vaiáveis que se identificara o término do loop geral e qual motivo.
 
     int enforcou = 0;
@@ -94,25 +95,21 @@ int main()
 
     //Armazenamento dos chutes dados para o loop de aparecer e npumero de tentativas
 
-    int tentativas = 0;
-    char chutes[26];
-
     //Chamando a função de inicio
 
     abertura();
+    escolherpalavra();
 
-    
     //Loop geral do software
 
     do 
     {
 
-
-
+        desenhaforca();
         //Aqui é onde é chamado a função para dar o chute.
 
-        chuta(chutes, &tentativas);
-        
+        chuta();
+        tentativas++;
         
         /*
          *BUG DO SCANF: O scanf reconhece o enter como um caractere e quando validamos um chute,
