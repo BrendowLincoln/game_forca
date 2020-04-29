@@ -82,6 +82,37 @@ void escolherpalavra()
     sprintf(palavrasecreta, "MELANCIA");
 }
 
+int enforcou()
+{
+    
+    int erros = 0;
+
+    for(int i =0; i < tentativas; i++)
+    {
+
+        int existe = 0;
+
+        for(int j = 0; j <strlen(palavrasecreta); j++)
+        {
+
+            if(chutes[i] == palavrasecreta[j])
+            {
+
+                existe = 1;
+                break;
+
+            }
+
+        }
+
+        if(!existe) erros++;
+
+    }
+    
+    return erros >= 5;
+
+}
+
 
 int main()
 {
@@ -90,7 +121,6 @@ int main()
     
     //Vaiáveis que se identificara o término do loop geral e qual motivo.
 
-    int enforcou = 0;
     int acertou = 0;
 
     //Armazenamento dos chutes dados para o loop de aparecer e npumero de tentativas
@@ -124,6 +154,6 @@ int main()
 
         //Transformou o valor da variável de 0 para 1. Então, o loop
 
-    } while(!acertou && !enforcou);
+    } while (!acertou && !enforcou());
 
 }
