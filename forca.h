@@ -4,4 +4,4 @@ void chuta();
 int jachutou(char letra);
 int ganhou();
 void desenhaforca();
-void escolhapalavra();
+void escolhepalavra();

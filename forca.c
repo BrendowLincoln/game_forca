@@ -1,12 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "forca.h"
 
 char palavrasecreta[20];
 int chutesdados = 0;
 char chutes[26];
-
-//Função da abertura do jogo da forca
 
 void  abertura()
 {
@@ -14,8 +14,6 @@ void  abertura()
  printf("\nSEJA BEM-VINDO AO JOGO DA FORCA 2000\n\n");
 
 }
-
-//Função que pede o chute
 
 void chuta()
 {
@@ -94,9 +92,33 @@ void desenhaforca()
 
 }
 
-void escolherpalavra()
+void escolhepalavra()
 {
-    sprintf(palavrasecreta, "MELANCIA");
+    FILE* f;
+
+    f = fopen("palavras.txt", "r");
+
+    if (f == 0)
+    {
+        printf("Banco de dados  de palavras não disponível\n\n");
+        exit(1);
+    }
+
+    int qtddepalavras;
+    fscanf(f, "%d", &qtddepalavras);
+
+    srand(time(0));
+    int randomico = rand () % qtddepalavras;
+
+    for(int i = 0; i <= randomico; i++)
+    {
+
+        fscanf(f, "%s", palavrasecreta);
+
+    }
+
+    fclose(f);
+
 }
 
 int enforcou()
@@ -135,7 +157,7 @@ int main()
 {
 
     abertura();
-    escolherpalavra();
+    escolhepalavra();
 
     //Loop geral do software
 
