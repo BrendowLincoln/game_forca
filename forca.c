@@ -152,6 +152,27 @@ int enforcou()
 
 }
 
+void adicionarpalavra()
+{
+
+    char quer;
+
+    printf("Você deseja adicionar uma nova palavra no jogo (S/N)?");
+    scanf(" %c", &quer);
+    printf("\n");
+    
+    if(quer == 'S')
+    {
+
+        char novapalavra[20];
+
+        printf("Digite a nova palavra, em letras maiúsculas: ");
+        scanf("%s", novapalavra);
+
+    }
+
+}
+
 
 int main()
 {
