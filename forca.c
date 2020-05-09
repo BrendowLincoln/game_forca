@@ -71,6 +71,16 @@ void desenhaforca()
 
         printf("\n");
 
+        printf("  _________       \n");
+        printf(" |/        |      \n");
+        printf(" |        (_)     \n");
+        printf(" |        \\|/    \n");
+        printf(" |         |      \n");
+        printf(" |        / \\    \n");
+        printf(" |_________       \n");
+        printf("_|____            \n");
+        printf("\n\n");
+
         for(int i = 0; i < strlen(palavrasecreta); i++)
         {
             
@@ -92,9 +102,24 @@ void desenhaforca()
 
 }
 
-int enforcou()
+int letraexistente(char letra)
 {
-    
+
+    for(int j = 0; j <strlen(palavrasecreta); j++)
+        {
+
+            if(letra == palavrasecreta[j])
+                return 1;
+
+        }
+
+        return 0;
+
+}
+
+int chuteserrados()
+{
+        
     int erros = 0;
 
     for(int i =0; i < chutesdados; i++)
@@ -102,24 +127,20 @@ int enforcou()
 
         int existe = 0;
 
-        for(int j = 0; j <strlen(palavrasecreta); j++)
-        {
+        
 
-            if(chutes[i] == palavrasecreta[j])
-            {
-
-                existe = 1;
-                break;
-
-            }
-
-        }
-
-        if(!existe) erros++;
+        if(!letraexistente(chutes[i]))
+            erros++;
 
     }
     
-    return erros >= 5;
+    return erros;
+
+}
+
+int enforcou()
+{
+    chuteserrados() >= 5;
 
 }
 
