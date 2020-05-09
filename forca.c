@@ -181,7 +181,7 @@ void adicionarpalavra()
 
         fprintf(f, "%s", novapalavra);
 
-        fclose(f);
+        fclose(f)
 
     }
 
