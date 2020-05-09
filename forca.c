@@ -179,9 +179,17 @@ void adicionarpalavra()
             exit(1);
         }
 
-        fprintf(f, "%s", novapalavra);
+        int qtd;
+        fscanf(f, "%d", &qtd);
+        qtd++;
+        fseek(f, 0, SEEK_SET);
+        fprintf(f, "%d", qtd);
 
-        fclose(f)
+        fseek(f, 0, SEEK_END);
+
+        fprintf(f, "\n%s", novapalavra);
+
+        fclose(f);
 
     }
 
