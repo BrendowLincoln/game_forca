@@ -92,35 +92,6 @@ void desenhaforca()
 
 }
 
-void escolhepalavra()
-{
-    FILE* f;
-
-    f = fopen("palavras.txt", "r");
-
-    if (f == 0)
-    {
-        printf("Banco de dados  de palavras não disponível\n\n");
-        exit(1);
-    }
-
-    int qtddepalavras;
-    fscanf(f, "%d", &qtddepalavras);
-
-    srand(time(0));
-    int randomico = rand () % qtddepalavras;
-
-    for(int i = 0; i <= randomico; i++)
-    {
-
-        fscanf(f, "%s", palavrasecreta);
-
-    }
-
-    fclose(f);
-
-}
-
 int enforcou()
 {
     
@@ -152,6 +123,35 @@ int enforcou()
 
 }
 
+void escolhepalavra()
+{
+    FILE* f;
+
+    f = fopen("palavras.txt", "r");
+
+    if (f == 0)
+    {
+        printf("Banco de dados  de palavras não disponível\n\n");
+        exit(1);
+    }
+
+    int qtddepalavras;
+    fscanf(f, "%d", &qtddepalavras);
+
+    srand(time(0));
+    int randomico = rand () % qtddepalavras;
+
+    for(int i = 0; i <= randomico; i++)
+    {
+
+        fscanf(f, "%s", palavrasecreta);
+
+    }
+
+    fclose(f);
+
+}
+
 void adicionarpalavra()
 {
 
@@ -168,6 +168,20 @@ void adicionarpalavra()
 
         printf("Digite a nova palavra, em letras maiúsculas: ");
         scanf("%s", novapalavra);
+
+        FILE* f;
+
+        f = fopen("palavras.txt", "a");
+
+        if (f == 0)
+        {
+            printf("Banco de dados  de palavras não disponível\n\n");
+            exit(1);
+        }
+
+        fprintf(f, "%s", novapalavra);
+
+        fclose(f);
 
     }
 
