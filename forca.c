@@ -22,7 +22,18 @@ void chuta()
     printf("Qual é a letra?\n");
     printf("Chute: ");
     scanf(" %c", &chute);
-    printf("\n\n");
+    if(letraexiste(chute))
+    {
+
+        printf("\nVocê acertou: a palavra tem a letra %c\n\n", chute);
+
+    }
+    else
+    {
+
+        printf("\nVocê errou: a palavra NÃO tem a letra %c\n\n", chute);
+
+    }
 
     chutes[chutesdados] = chute;
 }
@@ -104,18 +115,18 @@ void desenhaforca()
 
 }
 
-int letraexistente(char letra)
+int letraexiste(char letra)
 {
 
     for(int j = 0; j <strlen(palavrasecreta); j++)
-        {
+    {
 
-            if(letra == palavrasecreta[j])
-                return 1;
+        if(letra == palavrasecreta[j])
+            return 1;
 
-        }
+    }
 
-        return 0;
+    return 0;
 
 }
 
@@ -127,7 +138,7 @@ int chuteserrados()
     for(int i =0; i < chutesdados; i++)
     {
 
-        if(!letraexistente(chutes[i]))
+        if(!letraexiste(chutes[i]))
             erros++;
 
     }
@@ -236,6 +247,47 @@ int main()
         printf("\n");
 
     } while (!ganhou() && !enforcou());
+
+    if (ganhou())
+    {
+        printf("\nParabéns, você ganhou!\n\n");
+
+        printf("        ___________         \n");
+        printf("       '._==_==_=_.'        \n");
+        printf("       .-\\:     /-.        \n");
+        printf("      | (|:.    |) |        \n");
+        printf("       '-|:.    |-'         \n");
+        printf("         \\_.   /        \n");
+        printf("          '_. .'          \n");
+        printf("            ) (         \n");
+        printf("          _.' '._         \n");
+        printf("         '-------'         \n");
+    }
+    else 
+    {
+        printf("\nPuxa, vocẽ foi enforcado!\n");
+        printf("A palavra era **%s**\n\n", palavrasecreta);
+
+        printf("    ____________________        \n");
+        printf("   /                    \\      \n");
+        printf("  /                      \\     \n");
+        printf("//                        \\/\\ \n");
+        printf("\\|    xxxx     xxxx     | /    \n");
+        printf(" |    xxxx     xxxx     |/      \n");
+        printf(" |    xxx       xxx     |       \n");
+        printf(" |                      |       \n");
+        printf(" \\__      xxx         __/      \n");
+        printf("   |\\     xxx        /|        \n");
+        printf("   | |              | |         \n");
+        printf("   | I  I  I  I  I  I |         \n");
+        printf("   |  I  I  I  I  I   |         \n");
+        printf("   \\_                _/        \n");
+        printf("     \\_            _/          \n");
+        printf("       \\__________/        \n");
+
+    }
+    
+    
 
     adicionarpalavra();
 

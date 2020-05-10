@@ -8,3 +8,4 @@ int jachutou(char letra);
 int ganhou();
 void desenhaforca();
 void escolhepalavra();
+int letraexiste(char letra);
