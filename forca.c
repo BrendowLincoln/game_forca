@@ -69,14 +69,16 @@ void desenhaforca()
 
         //Inteligência para identificar se acertou e descobrir a letra.
 
+        int erros = chuteserrados();
+
         printf("\n");
 
         printf("  _________       \n");
         printf(" |/        |      \n");
-        printf(" |        (_)     \n");
-        printf(" |        \\|/    \n");
-        printf(" |         |      \n");
-        printf(" |        / \\    \n");
+        printf(" |        %c%c%c  \n", (erros >= 1?'(':' '), (erros >= 1?'_':' '), (erros >= 1?')':' '));
+        printf(" |        %c%c%c  \n", (erros >= 3?'\\':' '), (erros >= 2?'|':' '), (erros >= 3?'/':' '));
+        printf(" |         %c     \n", (erros >= 2?'|':' '));
+        printf(" |        %c %c   \n", (erros >= 4?'/':' '), (erros >= 4?'\\':' '));
         printf(" |_________       \n");
         printf("_|____            \n");
         printf("\n\n");
@@ -125,10 +127,6 @@ int chuteserrados()
     for(int i =0; i < chutesdados; i++)
     {
 
-        int existe = 0;
-
-        
-
         if(!letraexistente(chutes[i]))
             erros++;
 
@@ -140,7 +138,7 @@ int chuteserrados()
 
 int enforcou()
 {
-    chuteserrados() >= 5;
+    return chuteserrados() >= 5;
 
 }
 
